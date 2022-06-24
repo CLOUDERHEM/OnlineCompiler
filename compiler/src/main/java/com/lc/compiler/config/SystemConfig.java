@@ -6,7 +6,7 @@ package com.lc.compiler.config;
  */
 public final class SystemConfig {
 
-    public static final String TMP_PATH = "/tmp/onlineCompiler/";
-    public static final int UID = 1010;
-    public static final int GID = 1010;
+    public static final String TMP_PATH = "/tmp/OnlineCompile/";
+    public static final int UID = 0;
+    public static final int GID = 0;
 }

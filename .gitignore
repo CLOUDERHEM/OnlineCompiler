@@ -35,5 +35,6 @@ build/
 ### Custom ###
 **/src/main/c/output/
 **/src/main/c/build/
+**/src/main/c/.vscode
 *.log
 
