@@ -26,6 +26,12 @@ public class Params {
     int uid;
     int gid;
 
+    public Params() {
+        //默认其他用户和用户组
+        this.uid=-1;
+        this.gid=-1;
+    }
+
     public int getMaxCpuTime() {
         return maxCpuTime;
     }
@@ -156,24 +162,25 @@ public class Params {
 
     @Override
     public String toString() {
-        return "Params{" +
-                "maxCpuTime=" + maxCpuTime +
-                ", maxRealTime=" + maxRealTime +
-                ", maxMemory=" + maxMemory +
-                ", maxProcessNumber=" + maxProcessNumber +
-                ", maxOutputSize=" + maxOutputSize +
-                ", maxStack=" + maxStack +
-                ", exePath='" + exePath + '\'' +
-                ", inputPath='" + inputPath + '\'' +
-                ", outputPath='" + outputPath + '\'' +
-                ", errorPath='" + errorPath + '\'' +
-                ", logPath='" + logPath + '\'' +
-                ", seccompRuleName='" + seccompRuleName + '\'' +
-                ", env=" + Arrays.toString(env) +
-                ", args=" + Arrays.toString(args) +
-                ", uid=" + uid +
-                ", gid=" + gid +
-                '}';
+        final StringBuffer sb = new StringBuffer("Params{");
+        sb.append("\nmaxCpuTime=").append(maxCpuTime);
+        sb.append(", \nmaxRealTime=").append(maxRealTime);
+        sb.append(", \nmaxMemory=").append(maxMemory);
+        sb.append(", \nmaxProcessNumber=").append(maxProcessNumber);
+        sb.append(", \nmaxOutputSize=").append(maxOutputSize);
+        sb.append(", \nmaxStack=").append(maxStack);
+        sb.append(", \nexePath='").append(exePath).append('\'');
+        sb.append(", \ninputPath='").append(inputPath).append('\'');
+        sb.append(", \noutputPath='").append(outputPath).append('\'');
+        sb.append(", \nerrorPath='").append(errorPath).append('\'');
+        sb.append(", \nlogPath='").append(logPath).append('\'');
+        sb.append(", \nseccompRuleName='").append(seccompRuleName).append('\'');
+        sb.append(", \nenv=").append(env == null ? "null" : Arrays.asList(env).toString());
+        sb.append(", \nargs=").append(args == null ? "null" : Arrays.asList(args).toString());
+        sb.append(", \nuid=").append(uid);
+        sb.append(", \ngid=").append(gid);
+        sb.append('}');
+        return sb.toString();
     }
 }
 

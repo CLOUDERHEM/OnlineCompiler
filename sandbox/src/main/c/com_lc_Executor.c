@@ -1,5 +1,6 @@
 #include "com_lc_Executor.h"
 #include "runner.h"
+#include <string.h>
 
 void setClassField(JNIEnv *jenv, jobject obj, jclass jclazz, char *name, int val) {
     // jfieldID fieldId = (*jenv)->GetFieldID(jenv, jclazz, name, "Ljava/lang/Integer");
@@ -56,17 +57,18 @@ void processStringArray(JNIEnv *jenv, jobject obj, char *param[255], char *name)
     }
     jsize n = (*jenv)->GetArrayLength(jenv, array);
     int i = 1;
-    while (i <= n) {
-        jstring s = (jstring)(*jenv)->GetObjectArrayElement(jenv, array, i - 1);
-        param[i] = (*jenv)->GetStringUTFChars(jenv, s, NULL);
+    while (i < n) {
+        param[i] = NULL;
+        jstring s = s = (jstring)(*jenv)->GetObjectArrayElement(jenv, array, i);
+        if (!strcmp(name, "env")) {
+            param[i - 1] = (*jenv)->GetStringUTFChars(jenv, s, NULL);
+        } else {
+            param[i] = (*jenv)->GetStringUTFChars(jenv, s, NULL);
+        }
         i++;
     }
     param[i] = NULL;
 }
-
-int *max_cpu_time, *max_real_time, *max_memory, *max_stack, *memory_limit_check_only,
-    *max_process_number, *max_output_size, *uid, *gid;
-char *exe_path, *input_path, *output_path, *error_path, *args, *env, *log_path, *seccomp_rule_name;
 
 JNIEXPORT jobject JNICALL Java_com_lc_Executor_run(JNIEnv *jenv, jclass jclazz, jobject obj) {
 
@@ -144,7 +146,7 @@ JNIEXPORT jobject JNICALL Java_com_lc_Executor_run(JNIEnv *jenv, jclass jclazz, 
     // set args
     processStringArray(jenv, obj, _config.args, "args");
     // set env
-    processStringArray(jenv, obj, _config.args, "env");
+    processStringArray(jenv, obj, _config.env, "env");
 
     char *logPath = getStringFromObj(jenv, obj, "logPath");
     if (logPath) {
@@ -161,14 +163,14 @@ JNIEXPORT jobject JNICALL Java_com_lc_Executor_run(JNIEnv *jenv, jclass jclazz, 
     }
 
     int uidd = getIntFromObj(jenv, obj, "uid");
-    if (uidd) {
+    if (uidd != -1) {
         _config.uid = (uid_t)uidd;
     } else {
         _config.uid = 65534;
     }
 
     int gidd = getIntFromObj(jenv, obj, "gid");
-    if (gidd) {
+    if (gidd != -1) {
         _config.gid = (gid_t)gidd;
     } else {
         _config.gid = 65534;

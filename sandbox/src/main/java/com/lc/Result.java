@@ -15,6 +15,15 @@ public class Result {
     private int result;
     private int error;
     private int realTime;
+    private int status;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public int getCpuTime() {
         return cpuTime;

@@ -27,7 +27,7 @@ public class SandBoxTest {
         params.setUid(0);
         params.setGid(0);
 
-        Result run = Executor.run(params);
+        Result run = Executor.exec(params);
 
 
         System.out.println(run);

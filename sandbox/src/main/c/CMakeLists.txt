@@ -9,7 +9,7 @@ set(CMAKE_C_FLAGS "-g -Wall -std=c11 -pie -fPIC -shared")
 
 # make judger lib
 file(GLOB SOURCE "sandbox/src/*.c" "sandbox/src/rules/*.c" "*.c")
-include_directories(/usr/lib/jvm/java-17-openjdk-amd64/include /usr/lib/jvm/java-17-openjdk-amd64/include/linux .)
+include_directories( "include/" "include/linux")
 add_executable(sandbox.so ${SOURCE})
 target_link_libraries(sandbox.so pthread seccomp)
 
