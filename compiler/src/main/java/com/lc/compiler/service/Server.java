@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.nio.charset.StandardCharsets;
+import java.util.UUID;
 
 /**
  * @author Aaron Yeung
@@ -26,7 +27,7 @@ public class Server {
             return null;
         }
 
-        String dirName = System.currentTimeMillis() + "/";
+        String dirName = UUID.randomUUID() + "/";
         String inputPath = SystemConfig.TMP_PATH + dirName + "1.in";
         String outputDir = SystemConfig.TMP_PATH + dirName;
 
@@ -38,7 +39,7 @@ public class Server {
         String srcPath = outputDir + configInstance.srcName();
         FileUtil.writeString(code.getCode(), srcPath, StandardCharsets.UTF_8);
         // set input file
-        FileUtil.writeString(code.getInput(), inputPath, StandardCharsets.UTF_8 );
+        FileUtil.writeString(code.getInput(), inputPath, StandardCharsets.UTF_8);
 
         Result serve = serve(configInstance, srcPath, outputDir, inputPath);
 

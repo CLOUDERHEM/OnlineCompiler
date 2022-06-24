@@ -1,7 +1,7 @@
 package com.lc.compiler.controller;
 
 import com.lc.Result;
-import com.lc.compiler.model.CompileResult;
+import com.lc.compiler.enums.ResultCodeEnum;
 import com.lc.compiler.model.RequestCodeVO;
 import com.lc.compiler.service.Server;
 import com.lc.compiler.util.ResultData;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Aaron Yeung
  * @date 6/24/2022 3:50 PM
  */
-@RequestMapping("/api")
+@RequestMapping("/just")
 @RestController
 public class CompileController {
 
@@ -31,16 +31,20 @@ public class CompileController {
     public ResultData<?> run(@RequestBody @Validated RequestCodeVO requestCodeVO) {
 
         Result result = compileService.serve(requestCodeVO);
+        ResultData<Result> resultData = ResultData.success("success", result);
 
-        if (result == null || result.getStatus() == 3) {
-            return ResultData.error("系统错误, 请联系开发者", result);
+        if (result == null) {
+            resultData.setMsg(ResultCodeEnum.getStatusMsg(3));
+            return resultData;
         }
-        if (result.getStatus() == 1) {
-            return ResultData.error("编译错误", result);
+
+        if (result.getStatus() != 0) {
+            resultData.setMsg(ResultCodeEnum.getStatusMsg(result.getStatus()));
+            return resultData;
         }
-        if (result.getResult() == 2) {
-            return ResultData.error("运行时错误", result);
-        }
-        return ResultData.success("success", result);
+
+        resultData.setMsg(ResultCodeEnum.getResultMsg(result.getResult()));
+
+        return resultData;
     }
 }
