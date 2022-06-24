@@ -13,17 +13,17 @@ public class ResultCodeEnum {
     private static final Map<Integer, String> STATUS_INFO_MAP = new HashMap<>();
 
     static {
-        RESULT_INFO_MAP.put(0, "运行成功");
-        RESULT_INFO_MAP.put(1, "运行时间过长");
-        RESULT_INFO_MAP.put(2, "总运行时间过长");
-        RESULT_INFO_MAP.put(3, "运行时内存过大");
-        RESULT_INFO_MAP.put(4, "运行时错误");
-        RESULT_INFO_MAP.put(5, "系统错误, 请联系开发者");
+        RESULT_INFO_MAP.put(0, "运行成功 ");
+        RESULT_INFO_MAP.put(1, "时间过长 ");
+        RESULT_INFO_MAP.put(2, "总时间过长 ");
+        RESULT_INFO_MAP.put(3, "内存过大 ");
+        RESULT_INFO_MAP.put(4, "运行时错误 ");
+        RESULT_INFO_MAP.put(5, "系统错误, 请联系开发者 ");
 
-        STATUS_INFO_MAP.put(0, "运行成功");
-        STATUS_INFO_MAP.put(1, "编译错误");
-        STATUS_INFO_MAP.put(2, "运行时错误");
-        STATUS_INFO_MAP.put(3, "系统错误, 请联系开发者");
+        STATUS_INFO_MAP.put(0, "运行成功 ");
+        STATUS_INFO_MAP.put(1, "编译过程错误 ");
+        STATUS_INFO_MAP.put(2, "运行过程错误 ");
+        STATUS_INFO_MAP.put(3, "系统错误, 请联系开发者 ");
     }
 
     public static String getResultMsg(Integer code) {

@@ -40,10 +40,9 @@ public class CompileController {
 
         if (result.getStatus() != 0) {
             resultData.setMsg(ResultCodeEnum.getStatusMsg(result.getStatus()));
-            return resultData;
         }
 
-        resultData.setMsg(ResultCodeEnum.getResultMsg(result.getResult()));
+        resultData.setMsg(resultData.getMsg() + ResultCodeEnum.getResultMsg(result.getResult()));
 
         return resultData;
     }
