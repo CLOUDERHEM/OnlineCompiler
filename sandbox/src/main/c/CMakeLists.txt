@@ -9,7 +9,8 @@ set(CMAKE_C_FLAGS "-g -Wall -std=c11 -pie -fPIC -shared")
 
 # make judger lib
 file(GLOB SOURCE "sandbox/src/*.c" "sandbox/src/rules/*.c" "*.c")
-include_directories( "include/" "include/linux")
+# must add the include
+include_directories( "include/" "include/linux" "sandbox/src" "sandbox/src/rules")
 add_executable(sandbox.so ${SOURCE})
 target_link_libraries(sandbox.so pthread seccomp)
 
