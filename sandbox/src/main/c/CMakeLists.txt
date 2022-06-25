@@ -8,9 +8,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/output)
 set(CMAKE_C_FLAGS "-g -Wall -std=c11 -pie -fPIC -shared")
 
 # make judger lib
-file(GLOB SOURCE "sandbox/src/*.c" "sandbox/src/rules/*.c" "*.c")
+file(GLOB SOURCE "src/*.c" "src/rules/*.c" "*.c")
 # must add the include
-include_directories( "include/" "include/linux" "sandbox/src" "sandbox/src/rules")
+include_directories( "include/" "include/linux" "src" "src/rules")
 add_executable(sandbox.so ${SOURCE})
 target_link_libraries(sandbox.so pthread seccomp)
 
