@@ -1,4 +1,4 @@
-package com.lc.compiler.model;
+package com.lc.compiler.model.vo;
 
 import lombok.Data;
 
