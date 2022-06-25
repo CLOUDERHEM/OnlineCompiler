@@ -2,6 +2,8 @@ package com.lc.compiler.model.vo;
 
 import lombok.Data;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -11,6 +13,8 @@ import javax.validation.constraints.NotNull;
  */
 @Data
 public class RequestCodeVO {
+    @Max(value = 4)
+    @Min(value = 1)
     @NotNull(message = "language 不能为空")
     private Integer language;
     private String input;
