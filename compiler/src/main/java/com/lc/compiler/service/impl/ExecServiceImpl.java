@@ -29,24 +29,24 @@ public class ExecServiceImpl implements ExecService {
         if (code == null || code.getLanguage() == null || !StringUtils.hasText(code.getCode())) {
             return null;
         }
-
-        String relativeDirPath = dirName + "/";
-        String inputPath = SystemConfig.TMP_PATH + relativeDirPath + "1.in";
-        String absoluteOutputDir = SystemConfig.TMP_PATH + relativeDirPath;
-
         LanguageConfig configInstance = LanguageConfigUtils.getConfigInstance(code.getLanguage());
         if (configInstance == null) {
             return null;
         }
 
+        String relativeDirPath = dirName + "/";
+        String inputPath = SystemConfig.TMP_PATH + relativeDirPath + "1.in";
+        String absoluteOutputDir = SystemConfig.TMP_PATH + relativeDirPath;
+        String outputPath = absoluteOutputDir + "1.out";
         String srcPath = absoluteOutputDir + configInstance.srcName();
+
         FileUtil.writeString(code.getCode(), srcPath, StandardCharsets.UTF_8);
         // set input file
         if (StringUtils.hasText(code.getInput())) {
             FileUtil.writeString(code.getInput(), inputPath, StandardCharsets.UTF_8);
         }
 
-        Result serve = exec(configInstance, srcPath, absoluteOutputDir, inputPath);
+        Result serve = exec(configInstance, srcPath, absoluteOutputDir, inputPath, outputPath);
 
         log.debug("{}", serve);
 
@@ -57,7 +57,7 @@ public class ExecServiceImpl implements ExecService {
     }
 
     @Override
-    public Result exec(LanguageConfig languageConfig, String srcPath, String outputDir, String inputPath) {
+    public Result exec(LanguageConfig languageConfig, String srcPath, String outputDir, String inputPath, String outputPath) {
 
         // compile
         CompileResult compile = Compiler.compile(languageConfig, srcPath, outputDir);
@@ -65,7 +65,6 @@ public class ExecServiceImpl implements ExecService {
         if (compile.getResult() != 0) {
             return compile;
         }
-        String outputPath = outputDir + "1.out";
 
         // run
         return Runner.run(languageConfig, compile.getExePath(), inputPath, outputPath, outputDir);

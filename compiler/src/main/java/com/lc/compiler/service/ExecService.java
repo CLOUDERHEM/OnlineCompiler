@@ -26,7 +26,8 @@ public interface ExecService {
      * @param srcPath        path
      * @param outputDir      dir
      * @param inputPath      path
+     * @param outputPath     path
      * @return result
      */
-    Result exec(LanguageConfig languageConfig, String srcPath, String outputDir, String inputPath);
+    Result exec(LanguageConfig languageConfig, String srcPath, String outputDir, String inputPath, String outputPath);
 }
