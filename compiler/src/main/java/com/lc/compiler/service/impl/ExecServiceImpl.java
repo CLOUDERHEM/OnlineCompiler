@@ -42,7 +42,9 @@ public class ExecServiceImpl implements ExecService {
         String srcPath = absoluteOutputDir + configInstance.srcName();
         FileUtil.writeString(code.getCode(), srcPath, StandardCharsets.UTF_8);
         // set input file
-        FileUtil.writeString(code.getInput(), inputPath, StandardCharsets.UTF_8);
+        if (StringUtils.hasText(code.getInput())) {
+            FileUtil.writeString(code.getInput(), inputPath, StandardCharsets.UTF_8);
+        }
 
         Result serve = exec(configInstance, srcPath, absoluteOutputDir, inputPath);
 
