@@ -5,7 +5,7 @@ package com.lc;
  */
 public class Executor {
 
-    private static final String[] ENV = new String[]{"I am useless", "PATH=" + System.getenv("PATH")};
+    private static final String[] ENV = new String[]{"eg=I_am_useless", "PATH=" + System.getenv("PATH")};
 
     private native static Result run(Params params);
 

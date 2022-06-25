@@ -62,19 +62,12 @@ public interface LanguageConfig {
      */
     String seccompRule();
 
-    /**
-     * system env
-     *
-     * @return string
-     */
-    String env();
 
     /**
      * for java
      *
      * @return int
      */
-
     Integer memoryLimitCheckOnly();
 
     int MAX_PROCESS_NUMBER = 10;

@@ -78,11 +78,6 @@ public class C_Lang_Config implements LanguageConfig {
     }
 
     @Override
-    public String env() {
-        return Run.env;
-    }
-
-    @Override
     public Integer memoryLimitCheckOnly() {
         return -1;
     }
