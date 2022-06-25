@@ -1,17 +1,18 @@
 package com.lc.compiler.service.impl;
 
 import com.lc.Result;
+import com.lc.compiler.config.SystemConfig;
 import com.lc.compiler.model.vo.JobVO;
 import com.lc.compiler.model.vo.RequestCodeVO;
 import com.lc.compiler.service.EntryService;
 import com.lc.compiler.service.ExecService;
+import com.lc.compiler.util.CacheMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -24,7 +25,9 @@ import java.util.concurrent.Future;
 @Service
 public class EntryServiceImpl implements EntryService {
 
-    private static final Map<String, Future<Result>> JOB_LIST = new ConcurrentHashMap<>(50);
+    // private static final Map<String, Future<Result>> JOB_LIST = new ConcurrentHashMap<>(50)
+
+    private static final Map<String, Future<Result>> JOB_LIST = new CacheMap<>(SystemConfig.MAX_OBJECT_EXIST_TIME);
 
     private ExecService execService;
     private ThreadPoolTaskExecutor threadPoolExecutor;
