@@ -67,6 +67,9 @@ public class EntryServiceImpl implements EntryService {
 
         Future<Result> future = JOB_LIST.get(id);
 
+        if (future == null) {
+            return job;
+        }
         if (!future.isDone()) {
             job.setStatus(1);
         } else {
