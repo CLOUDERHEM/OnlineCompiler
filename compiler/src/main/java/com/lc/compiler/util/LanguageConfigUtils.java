@@ -1,10 +1,7 @@
 package com.lc.compiler.util;
 
 import com.lc.compiler.config.language.LanguageConfig;
-import com.lc.compiler.config.language.configs.C_Lang_Config;
-import com.lc.compiler.config.language.configs.Cpp_Lang_Config;
-import com.lc.compiler.config.language.configs.Java_Lang_Config;
-import com.lc.compiler.config.language.configs.Python_Lang_Config;
+import com.lc.compiler.config.language.configs.*;
 
 /**
  * @author Aaron Yeung
@@ -16,6 +13,7 @@ public class LanguageConfigUtils {
     private static final Cpp_Lang_Config CPP_LANG_CONFIG = new Cpp_Lang_Config();
     private static final Java_Lang_Config JAVA_LANG_CONFIG = new Java_Lang_Config();
     private static final Python_Lang_Config PYTHON_LANG_CONFIG = new Python_Lang_Config();
+    private static final JavaScript_Lang_Config JAVA_SCRIPT_LANG_CONFIG = new JavaScript_Lang_Config();
 
     public static LanguageConfig getConfigInstance(int languageNum) {
 
@@ -29,6 +27,8 @@ public class LanguageConfigUtils {
             languageConfig = JAVA_LANG_CONFIG;
         } else if (languageNum == 4) {
             languageConfig = PYTHON_LANG_CONFIG;
+        } else if (languageNum == 5) {
+            languageConfig = JAVA_SCRIPT_LANG_CONFIG;
         }
 
         return languageConfig;
