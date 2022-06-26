@@ -48,9 +48,9 @@ public class ExecServiceImpl implements ExecService {
 
         Result serve = exec(configInstance, srcPath, absoluteOutputDir, inputPath, outputPath);
 
-        log.debug("{}", serve);
-
-        // todo del dir
+        if (FileUtil.exist(absoluteOutputDir)) {
+            FileUtil.del(absoluteOutputDir);
+        }
 
         return serve;
 
