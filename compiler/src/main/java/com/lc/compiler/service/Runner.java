@@ -20,7 +20,7 @@ public class Runner {
 
         String[] runCommands = languageConfig.command().
                 // only running java has this
-                        replace("{exeDir}", outputDir).
+                replace("{exeDir}", outputDir).
                 replace("{maxMemory}", String.valueOf(languageConfig.maxMemory())).
                 replace("{exePath}", exePath).
                 split(" ");

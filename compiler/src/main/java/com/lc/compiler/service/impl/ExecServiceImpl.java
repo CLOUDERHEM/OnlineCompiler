@@ -37,13 +37,13 @@ public class ExecServiceImpl implements ExecService {
         String relativeDirPath = dirName + "/";
         String inputPath = null;
         String absoluteOutputDir = SystemConfig.TMP_PATH + relativeDirPath;
-        String outputPath = absoluteOutputDir + "1.out";
+        String outputPath = absoluteOutputDir + SystemConfig.OUTPUT_FILE_NAME;
         String srcPath = absoluteOutputDir + configInstance.srcName();
 
         FileUtil.writeString(code.getCode(), srcPath, StandardCharsets.UTF_8);
         // set input file
         if (StringUtils.hasText(code.getInput())) {
-            inputPath = SystemConfig.TMP_PATH + relativeDirPath + "1.in";
+            inputPath = SystemConfig.TMP_PATH + relativeDirPath + SystemConfig.INPUT_FILE_NAME;
             FileUtil.writeString(code.getInput(), inputPath, StandardCharsets.UTF_8);
         }
 
@@ -62,7 +62,6 @@ public class ExecServiceImpl implements ExecService {
 
         // compile
         CompileResult compile = Compiler.compile(languageConfig, srcPath, outputDir);
-
         if (compile.getResult() != 0) {
             return compile;
         }

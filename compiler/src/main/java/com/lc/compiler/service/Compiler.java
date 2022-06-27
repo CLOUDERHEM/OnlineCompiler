@@ -19,7 +19,7 @@ import java.nio.charset.StandardCharsets;
 public class Compiler {
     public static CompileResult compile(LanguageConfig languageConfig, String srcPath, String outputDir) {
         String exePath = outputDir + languageConfig.exeName();
-        String compileOutPath = outputDir + "compile.log";
+        String compileOutPath = outputDir + SystemConfig.COMPILE_LOG_NAME;
 
         String[] commands = languageConfig.compileCommand().
                 replace("{srcPath}", srcPath).

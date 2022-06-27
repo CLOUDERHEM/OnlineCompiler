@@ -16,9 +16,9 @@ public class ThreadPoolExecutorConfig {
     public ThreadPoolTaskExecutor asyncServiceExecutor() {
 
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(10);
-        executor.setMaxPoolSize(20);
-        executor.setQueueCapacity(50);
+        executor.setCorePoolSize(SystemConfig.CORE_POOL_SIZE);
+        executor.setMaxPoolSize(SystemConfig.MAX_POOL_SIZE);
+        executor.setQueueCapacity(SystemConfig.QUEUE_CAPACITY);
         executor.setThreadNamePrefix("compile-and-run-thread-");
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         executor.initialize();
