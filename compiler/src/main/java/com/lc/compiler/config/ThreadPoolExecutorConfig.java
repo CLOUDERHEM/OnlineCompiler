@@ -20,7 +20,7 @@ public class ThreadPoolExecutorConfig {
         executor.setMaxPoolSize(SystemConfig.MAX_POOL_SIZE);
         executor.setQueueCapacity(SystemConfig.QUEUE_CAPACITY);
         executor.setThreadNamePrefix("compile-and-run-thread-");
-        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardPolicy());
         executor.initialize();
 
         return executor;
