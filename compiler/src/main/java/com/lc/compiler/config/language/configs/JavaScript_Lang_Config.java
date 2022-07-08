@@ -32,7 +32,7 @@ public class JavaScript_Lang_Config implements LanguageConfig {
 
         public static String seccompRule = "node";
 
-        public static String env;
+        public static String[] env = {"LANG=en_US.UTF-8", "LANGUAGE=en_US:en", "LC_ALL=en_US.UTF-8"};
 
         public static Integer memoryLimitCheckOnly = 1;
     }
@@ -80,5 +80,10 @@ public class JavaScript_Lang_Config implements LanguageConfig {
     @Override
     public Integer memoryLimitCheckOnly() {
         return Run.memoryLimitCheckOnly;
+    }
+
+    @Override
+    public String[] env() {
+        return Run.env;
     }
 }

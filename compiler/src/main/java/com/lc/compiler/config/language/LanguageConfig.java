@@ -70,6 +70,14 @@ public interface LanguageConfig {
      */
     Integer memoryLimitCheckOnly();
 
+
+    /**
+     * env
+     *
+     * @return string[]
+     */
+    String[] env();
+
     int MAX_PROCESS_NUMBER = 10;
     int MAX_OUTPUT_SIZE = 20 * 1024 * 1024;
     int MAX_STACK = 128 * 1024 * 1024;

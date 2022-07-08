@@ -9,7 +9,7 @@ import com.lc.compiler.config.language.LanguageConfig;
  */
 @SuppressWarnings("all")
 public class Java_Lang_Config implements LanguageConfig {
-    public static String NAME="java";
+    public static String NAME = "java";
 
     public static class Compile {
 
@@ -33,7 +33,7 @@ public class Java_Lang_Config implements LanguageConfig {
 
         public static String seccompRule;
 
-        public static String env;
+        public static String[] env;
 
         public static Integer memoryLimitCheckOnly = 1;
     }
@@ -81,5 +81,10 @@ public class Java_Lang_Config implements LanguageConfig {
     @Override
     public Integer memoryLimitCheckOnly() {
         return 1;
+    }
+
+    @Override
+    public String[] env() {
+        return Run.env;
     }
 }

@@ -9,7 +9,8 @@ import com.lc.compiler.config.language.LanguageConfig;
  */
 @SuppressWarnings("all")
 public class Cpp_Lang_Config implements LanguageConfig {
-    public static String NAME="cpp";
+    public static String NAME = "cpp";
+
     public static class Compile {
 
         public static String srcName = "main.cpp";
@@ -32,7 +33,7 @@ public class Cpp_Lang_Config implements LanguageConfig {
 
         public static String seccompRule = "c_cpp";
 
-        public static String env;
+        public static String[] env;
     }
 
     @Override
@@ -78,5 +79,10 @@ public class Cpp_Lang_Config implements LanguageConfig {
     @Override
     public Integer memoryLimitCheckOnly() {
         return -1;
+    }
+
+    @Override
+    public String[] env() {
+        return Run.env;
     }
 }

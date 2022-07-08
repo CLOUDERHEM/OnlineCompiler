@@ -33,7 +33,7 @@ public class Python_Lang_Config implements LanguageConfig {
 
         public static String seccompRule = "general";
 
-        public static String env = "PYTHONIOENCODING=UTF-8";
+        public static String[] env = {"PYTHONIOENCODING=UTF-8"};
 
         public static Integer memoryLimitCheckOnly = 1;
     }
@@ -81,5 +81,10 @@ public class Python_Lang_Config implements LanguageConfig {
     @Override
     public Integer memoryLimitCheckOnly() {
         return -1;
+    }
+
+    @Override
+    public String[] env() {
+        return Run.env;
     }
 }

@@ -10,7 +10,7 @@ import com.lc.compiler.config.language.LanguageConfig;
 @SuppressWarnings("all")
 public class C_Lang_Config implements LanguageConfig {
 
-    public static String NAME="c";
+    public static String NAME = "c";
 
     public static class Compile {
 
@@ -34,7 +34,7 @@ public class C_Lang_Config implements LanguageConfig {
 
         public static String seccompRule = "c_cpp";
 
-        public static String env;
+        public static String[] env;
     }
 
     @Override
@@ -80,5 +80,10 @@ public class C_Lang_Config implements LanguageConfig {
     @Override
     public Integer memoryLimitCheckOnly() {
         return -1;
+    }
+
+    @Override
+    public String[] env() {
+        return Run.env;
     }
 }

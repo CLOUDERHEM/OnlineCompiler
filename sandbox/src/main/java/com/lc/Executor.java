@@ -5,13 +5,17 @@ package com.lc;
  */
 public class Executor {
 
-    private static final String[] ENV = new String[]{"eg=I_am_useless", "PATH=" + System.getenv("PATH")};
+    /**
+     * DEFAULT_ENV only init once
+     */
+    private static final String[] DEFAULT_ENV = {"eg=I_am_useless", "PATH=" + System.getenv("PATH")};
 
     private native static Result run(Params params);
 
     public static Result exec(Params params) {
-        params.setEnv(ENV);
-        // System.out.println(params);
+        // get the final env[] with extras in param
+        params.setEnv(StringUtils.concat(DEFAULT_ENV, params.getEnv()));
+
         return run(params);
     }
 

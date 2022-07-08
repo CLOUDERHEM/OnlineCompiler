@@ -42,6 +42,7 @@ public class Compiler {
         compileParams.setSeccompRuleName(null);
         // eg gcc(exePath) -o main main.c
         compileParams.setArgs(commands);
+        compileParams.setEnv(languageConfig.env());
 
         compileParams.setUid(SystemConfig.UID);
         compileParams.setGid(SystemConfig.GID);

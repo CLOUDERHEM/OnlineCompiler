@@ -46,8 +46,7 @@ jarray getOjbectArray(JNIEnv *jenv, jobject obj, char *fieldName) {
     if (object == NULL) {
         return NULL;
     }
-    jarray array = (jarray)object;
-    return array;
+    return (jarray)object;
 }
 
 void processStringArray(JNIEnv *jenv, jobject obj, char *param[255], char *name) {

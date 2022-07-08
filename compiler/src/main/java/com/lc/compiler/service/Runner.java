@@ -39,6 +39,7 @@ public class Runner {
         runParams.setLogPath(outputPath);
         runParams.setSeccompRuleName(languageConfig.seccompRule());
         runParams.setArgs(runCommands);
+        runParams.setEnv(languageConfig.env());
 
         runParams.setUid(SystemConfig.UID);
         runParams.setGid(SystemConfig.GID);
