@@ -5,6 +5,7 @@ import com.lc.compiler.enums.ResultCodeEnum;
 import com.lc.compiler.model.vo.JobVO;
 import com.lc.compiler.model.vo.RequestCodeVO;
 import com.lc.compiler.service.EntryService;
+import com.lc.compiler.util.CrsfUtils;
 import com.lc.compiler.util.ResultData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -29,6 +30,11 @@ public class CompileController {
 
     @PostMapping("/run")
     public ResultData<?> run(@RequestBody @Validated RequestCodeVO requestCodeVO) {
+
+        // crsf
+        if (!CrsfUtils.match(requestCodeVO.getCrsfToken())) {
+            return ResultData.error("invalid crsf_token ");
+        }
 
         JobVO run = entryService.run(requestCodeVO);
 
