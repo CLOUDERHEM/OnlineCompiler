@@ -10,6 +10,7 @@ import com.lc.compiler.config.language.LanguageConfig;
 @SuppressWarnings("all")
 public class Java_Lang_Config implements LanguageConfig {
     public static String NAME = "java";
+    public static final int NUMBER = 3;
 
     public static class Compile {
 

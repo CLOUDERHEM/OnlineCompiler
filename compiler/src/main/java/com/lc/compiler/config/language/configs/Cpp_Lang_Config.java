@@ -10,6 +10,7 @@ import com.lc.compiler.config.language.LanguageConfig;
 @SuppressWarnings("all")
 public class Cpp_Lang_Config implements LanguageConfig {
     public static String NAME = "cpp";
+    public static final int NUMBER = 2;
 
     public static class Compile {
 

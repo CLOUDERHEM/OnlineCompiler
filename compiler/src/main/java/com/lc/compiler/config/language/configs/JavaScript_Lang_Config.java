@@ -9,6 +9,7 @@ import com.lc.compiler.config.language.LanguageConfig;
 @SuppressWarnings("all")
 public class JavaScript_Lang_Config implements LanguageConfig {
     public static String NAME = "js";
+    public static final int NUMBER = 5;
 
     public static class Compile {
 

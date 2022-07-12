@@ -12,14 +12,9 @@ import lombok.Data;
 @Data
 public class ResultData<T> {
 
-
     private Integer code;
     private String msg;
     private T data;
-
-    public ResultData() {
-
-    }
 
     public static <T> ResultData<T> success(Integer code, String msg, T data) {
         return new ResultData<>(code, msg, data);

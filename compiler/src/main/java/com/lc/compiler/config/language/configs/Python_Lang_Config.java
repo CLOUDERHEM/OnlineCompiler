@@ -10,6 +10,7 @@ import com.lc.compiler.config.language.LanguageConfig;
 @SuppressWarnings("all")
 public class Python_Lang_Config implements LanguageConfig {
     public static String NAME = "python";
+    public static final int NUMBER = 4;
 
     public static class Compile {
 
