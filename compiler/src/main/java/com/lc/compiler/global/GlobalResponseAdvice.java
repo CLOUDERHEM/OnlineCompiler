@@ -24,11 +24,6 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalResponseAdvice implements ResponseBodyAdvice<Object> {
     private ObjectMapper objectMapper;
-    /**
-     * getGenericParameterType.getTypeName() 返回 ResultData<\?>
-     * class.getTypeName() 返回 ResultData
-     */
-    private static final String NAME_RESULT_DATA_CLASS = ResultData.class.getTypeName() + "<?>";
 
     @Autowired
     public void setObjectMapper(ObjectMapper objectMapper) {
@@ -37,8 +32,7 @@ public class GlobalResponseAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
-        // 如果返回的Object是Result不用invoke beforeBodyWrite 方法
-        return !NAME_RESULT_DATA_CLASS.equals(returnType.getGenericParameterType().getTypeName());
+        return true;
     }
 
     @Override

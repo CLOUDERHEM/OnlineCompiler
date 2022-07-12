@@ -1,14 +1,19 @@
 package com.lc.compiler.util;
 
 import cn.hutool.core.collection.ConcurrentHashSet;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.*;
+import java.util.AbstractMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Aaron Yeung
  * @date 6/25/2022 6:15 PM
  */
+@Slf4j
 public class CacheMap<K, V> extends AbstractMap<K, V> {
 
 
@@ -74,7 +79,7 @@ public class CacheMap<K, V> extends AbstractMap<K, V> {
                     Thread.sleep(cacheTimeout);
 
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    log.error("", e);
                 }
             }
         }

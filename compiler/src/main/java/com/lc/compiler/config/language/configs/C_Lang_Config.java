@@ -11,6 +11,7 @@ import com.lc.compiler.config.language.LanguageConfig;
 public class C_Lang_Config implements LanguageConfig {
 
     public static String NAME = "c";
+    public static final int NUMBER = 1;
 
     public static class Compile {
 

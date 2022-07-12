@@ -19,15 +19,15 @@ public class LanguageConfigUtils {
 
         LanguageConfig languageConfig = null;
 
-        if (languageNum == 1) {
+        if (languageNum == C_Lang_Config.NUMBER) {
             languageConfig = C_LANG_CONFIG;
-        } else if (languageNum == 2) {
+        } else if (languageNum == Cpp_Lang_Config.NUMBER) {
             languageConfig = CPP_LANG_CONFIG;
-        } else if (languageNum == 3) {
+        } else if (languageNum == Java_Lang_Config.NUMBER) {
             languageConfig = JAVA_LANG_CONFIG;
-        } else if (languageNum == 4) {
+        } else if (languageNum == Python_Lang_Config.NUMBER) {
             languageConfig = PYTHON_LANG_CONFIG;
-        } else if (languageNum == 5) {
+        } else if (languageNum == JavaScript_Lang_Config.NUMBER) {
             languageConfig = JAVA_SCRIPT_LANG_CONFIG;
         }
 
