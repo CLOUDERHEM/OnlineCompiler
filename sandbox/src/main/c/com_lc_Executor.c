@@ -58,7 +58,7 @@ void processStringArray(JNIEnv *jenv, jobject obj, char *param[255], char *name)
     int i = 1;
     while (i < n) {
         param[i] = NULL;
-        jstring s = s = (jstring)(*jenv)->GetObjectArrayElement(jenv, array, i);
+        jstring s = (jstring)(*jenv)->GetObjectArrayElement(jenv, array, i);
         if (!strcmp(name, "env")) {
             param[i - 1] = (*jenv)->GetStringUTFChars(jenv, s, NULL);
         } else {
