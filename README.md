@@ -2,24 +2,24 @@
 
 ## 简述
 
-一款简单的在线编译器后台, 支持``c``, ``c++``, ``java``, ``python``和``javascript``, 后续会支持更多语言
+一款简单的在线编译器后台, 支持`c`, `c++`, `java`, `python`和`javascript`, 后续会支持更多语言
 
 
 
 ## 原理
 
-1. 使用``JNI``时加载``.so``文件限制的执行 *编译* 和 *运行*
+1. 使用`JNI`时加载`.so`文件限制的执行 *编译* 和 *运行*
 
-2. 通过 ``seccomp``限制``syscall``, 例如``clone``, ``fork``, ``write``, ``read``, ``exit_group``等
+2. 通过 `seccomp`限制`syscall`, 例如禁止 `clone`, `fork`, `kill`, `socket`, `vfork` 等
 
 
 
 ## 安装
 
-建议在``docker``中使用, 非``docker``环境中使用中会存在很多``syscall``限制问题
+建议在`docker`中使用, 非`docker`环境中使用会存在很多`syscall`被限制导致加载`SECCOMP`失败的情况
 
-1. 执行``sandbox/src/main/c``中的脚本, 生成``sandbox.so``文件到``/usr/lib/sandbox/sandbox.so``
-2. 后端使用``springboot`` , 通过启动类启动
+1. 执行`sandbox/src/main/c`中的脚本, 生成`sandbox.so`文件到`/usr/lib/sandbox/sandbox.so`
+2. 后端使用`springboot` , 通过启动类启动
 
 
 
@@ -29,17 +29,19 @@
 
 ### Run 提交代码
 
-URL:  ``/just/run``
+URL:  `/just/run`
 
-Method: ``POST``
+Method: `POST`
 
 Args:
 
-* ``language`` ``c = 1``, ``c++ = 2``, ``java = 3``, ``python = 4``, ``javascript = 5``
-* ``code`` code
-* ``input`` 运行输入
+* `language` : `c = 1`, `c++ = 2`, `java = 3`, `python = 4`, `javascript = 5`
+* `code` : your code
+* `input` : 运行输入
 
 Request示例:
+
+> 求 1 ~ 100 的和
 
 ```json
 {
@@ -68,25 +70,25 @@ Response示例:
 
 ### Query 查询执行结果
 
-URL: ``/just/query``
+URL: `/just/query`
 
-Method:  ``GET``
+Method:  `GET`
 
 Args: 
 
-* ``id`` 任务的id
+* `id` 任务的id
 
 Request示例:
 
-```
+```bash
 curl --location --request GET 127.0.0.1:8080/just/query?id=7ce2e89a-5a04-4810-aadb-d6e957c9aa13
 ```
 
 Response示例:
 
-* ``data.status`` 没有任务 = -1, 运行结束 = 0, 仍在运行 = 1
-* ``data.result.status`` 运行成功 = 0, 编译错误 = 1, 运行出错 = 2
-* ``data.result.output`` 运行的输出
+* `data.status` : 没有任务 = -1, 运行结束 = 0, 仍在运行 = 1
+* `data.result.status` : 运行成功 = 0, 编译错误 = 1, 运行出错 = 2
+* `data.result.output` : 运行的输出
 
 ```json
 {
@@ -120,6 +122,6 @@ Response示例:
 
 ## 附加
 
-* sandbox部分来源于:  [**QingdaoU/OnlineJudge**](https://github.com/QingdaoU/Judger)
-* sandbox在某些系统上可能存在syscall 权限问题, 使用``dmesg -T``查看系统调用, 在``sandbox``中的``c/src/rules``的``syscalls_whitelist``中放行该syscall
-* 在某些机器或系统上``memory``和``realTime``可能过大, 可以在``src/main/java/com/lc/compiler/config/language/configs`` 调整为适合大小
+* sandbox源于:  [**QingdaoU/OnlineJudge**](https://github.com/QingdaoU/Judger)
+* sandbox在某些系统上可能存在syscall 权限问题, 使用`dmesg -T`查看系统调用, 在`sandbox`中的`c/src/rules`的`syscalls_whitelist`中放行该syscall
+* 在某些机器或系统上`memory`和`realTime`需求可能很大, 可以在`compiler/config/language/configs` 调整为适合大小
