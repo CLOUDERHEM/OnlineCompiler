@@ -1,22 +1,18 @@
 # 在线编译器
 
-## 简述
 
 一款简单的在线编译器后台, 支持`c`, `c++`, `java`, `python`和`javascript`, 后续会支持更多语言
 
 
-
 ## 原理
-
-1. 使用`JNI`时加载`.so`文件限制的执行 *编译* 和 *运行*
-
-2. 通过 `seccomp`限制`syscall`, 例如禁止 `clone`, `fork`, `kill`, `socket`, `vfork` 等
+1. 使用`JNI`调用`C`代码
+2. 通过Linux内核安全机制 `seccomp`限制`syscall`, 例如禁止 `clone`, `fork`, `kill`, `socket`, `vfork` 等系统调用
 
 
 
 ## 安装
 
-建议在`docker`中使用, 非`docker`环境中使用会存在很多`syscall`被限制导致加载`SECCOMP`失败的情况
+> 建议在`docker`中使用, 非`docker`环境中使用会存在`syscall`被限制导致程序不能正常被执行(此时需要将被限制的`syscall`添加到`seccomp_rules`白名单中)
 
 1. 执行`sandbox/src/main/c`中的脚本, 生成`sandbox.so`文件到`/usr/lib/sandbox/sandbox.so`
 2. 后端使用`springboot` , 通过启动类启动
