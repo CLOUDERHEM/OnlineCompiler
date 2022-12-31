@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
  */
 @Data
 public class RequestCodeVO {
-    @Max(value = 5)
+    @Max(value = 6)
     @Min(value = 1)
     @NotNull(message = "language 不能为空")
     private Integer language;

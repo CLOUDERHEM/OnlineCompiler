@@ -14,6 +14,7 @@ public class LanguageConfigUtils {
     private static final Java_Lang_Config JAVA_LANG_CONFIG = new Java_Lang_Config();
     private static final Python_Lang_Config PYTHON_LANG_CONFIG = new Python_Lang_Config();
     private static final JavaScript_Lang_Config JAVA_SCRIPT_LANG_CONFIG = new JavaScript_Lang_Config();
+    private static final Go_Lang_Config GO_LANG_CONFIG = new Go_Lang_Config();
 
     public static LanguageConfig getConfigInstance(int languageNum) {
 
@@ -29,6 +30,8 @@ public class LanguageConfigUtils {
             languageConfig = PYTHON_LANG_CONFIG;
         } else if (languageNum == JavaScript_Lang_Config.NUMBER) {
             languageConfig = JAVA_SCRIPT_LANG_CONFIG;
+        } else if (languageNum == Go_Lang_Config.NUMBER) {
+            languageConfig = GO_LANG_CONFIG;
         }
 
         return languageConfig;
