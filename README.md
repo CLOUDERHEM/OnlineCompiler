@@ -1,7 +1,7 @@
 # 在线编译器
 
 
-一款简单的在线编译器后台, 支持`c`, `c++`, `java`, `python`和`javascript`, 后续会支持更多语言
+一款简单的在线编译器后台, 支持`c`, `c++`, `java`, `python`, `golang`和`javascript`, 后续会支持更多语言
 
 
 ## 原理
@@ -31,7 +31,7 @@ Method: `POST`
 
 Args:
 
-* `language` : `c = 1`, `c++ = 2`, `java = 3`, `python = 4`, `javascript = 5`
+* `language` : `c = 1`, `c++ = 2`, `java = 3`, `python = 4`, `javascript = 5`, `golang = 6`
 * `code` : your code
 * `input` : 运行输入
 
