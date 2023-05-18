@@ -11,7 +11,7 @@ public class StringUtils {
         }
         int arrayLength = 0;
         for (String[] strings : param) {
-            if (strings == null || strings.length == 0) {
+            if (strings == null) {
                 continue;
             }
             for (String s : strings) {
@@ -25,7 +25,7 @@ public class StringUtils {
 
         int index = 0;
         for (String[] strings : param) {
-            if (strings == null || strings.length == 0) {
+            if (strings == null) {
                 continue;
             }
             for (String s : strings) {
