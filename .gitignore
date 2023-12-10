@@ -38,3 +38,6 @@ build/
 **/src/main/c/.vscode
 *.log
 
+.gradle
+
+**/.vscode
